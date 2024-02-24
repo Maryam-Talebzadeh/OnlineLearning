@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLearning.Web", "OnlineLearning\OnlineLearning.Web.csproj", "{73D641E6-4010-4432-94EA-1C1222FF5A68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLearning.DataLayer", "OnlineLearning.DataLayer\OnlineLearning.DataLayer.csproj", "{6F0D36A8-6B6E-42F7-8404-0BD7304C3752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLearning.Core", "OnlineLearning.Core\OnlineLearning.Core.csproj", "{4D384946-BF1B-4D16-8057-93FA9B9C26E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{73D641E6-4010-4432-94EA-1C1222FF5A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73D641E6-4010-4432-94EA-1C1222FF5A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73D641E6-4010-4432-94EA-1C1222FF5A68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F0D36A8-6B6E-42F7-8404-0BD7304C3752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F0D36A8-6B6E-42F7-8404-0BD7304C3752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F0D36A8-6B6E-42F7-8404-0BD7304C3752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F0D36A8-6B6E-42F7-8404-0BD7304C3752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D384946-BF1B-4D16-8057-93FA9B9C26E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D384946-BF1B-4D16-8057-93FA9B9C26E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D384946-BF1B-4D16-8057-93FA9B9C26E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D384946-BF1B-4D16-8057-93FA9B9C26E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
