@@ -10,5 +10,11 @@ namespace OnlineLearning.DataLayer.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; }
+
+        #region Navigation Properties
+
+        public virtual List<UserRole> UserRoles { get; set; }
+
+        #endregion
     }
 }

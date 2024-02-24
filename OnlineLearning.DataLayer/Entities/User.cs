@@ -16,5 +16,11 @@ namespace OnlineLearning.DataLayer.Entities
         public bool IsActive { get; set; }
         public string UserAvatar { get; set; }
         public DateTime RegisterDate { get; set; }
+
+        #region Navigation Properties
+
+        public virtual List<UserRole> UserRoles { get; set; }
+
+        #endregion
     }
 }
