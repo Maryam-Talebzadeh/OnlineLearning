@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title> Learnify| @ViewData["Title"] </title>
-    <partial name="_MetaTags" />
-    <partial name="_Styles" />
+    <partial name="~/Views/Shared/PartialViews/_MetaTags.cshtml" />
+    <partial name="~/Views/Shared/PartialViews/_Styles.cshtml" />
     <script src="/js/jquery.min.js"></script>
 </head>
 <body>
@@ -42,13 +42,13 @@
     </div>
 
     <!-- main manu -->
-    <partial name="_MainMenu" />
+    <partial name="~/Views/Shared/PartialViews/_MainMenu.cshtml" />
     <!-- /main manu -->
     <!-- content -->
     @RenderBody()
     <!-- /content -->
     <!-- footer -->
-    <partial name="_Footer" />
+    <partial name="~/Views/Shared/PartialViews/_Footer.cshtml" />
     <!-- /footer -->
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/script.js"></script>
