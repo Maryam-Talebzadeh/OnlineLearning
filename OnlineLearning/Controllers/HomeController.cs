@@ -6,7 +6,7 @@ namespace OnlineLearning.Web.Controllers
     {
         public IActionResult Index()
         {
-            return Content("Hello");
+            return View();
         }
     }
 }
