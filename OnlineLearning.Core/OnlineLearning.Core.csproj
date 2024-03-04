@@ -12,4 +12,8 @@
     <Folder Include="Security\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineLearning.DataLayer\OnlineLearning.DataLayer.csproj" />
+  </ItemGroup>
+
 </Project>
