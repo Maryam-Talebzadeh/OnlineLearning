@@ -15,5 +15,7 @@ namespace OnlineLearning.DataLayer.Repositories.Interfaces
         public User GetUserById(int id);
         public List<User> GetAllUsers();
         public bool LoginUser(string email, string password);
+        public bool IsExistEmail(string email);
+        public bool IsExistUserName(string userName);
     }
 }
