@@ -3,6 +3,8 @@ using Microsoft.Extensions.Options;
 using OnlineLearning.DataLayer.Context.EfCore;
 using OnlineLearning.DataLayer.Repositories;
 using OnlineLearning.DataLayer.Repositories.Interfaces;
+using System.Reflection;
+using OnlineLearning.Core.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,12 @@ builder.Services.AddDbContext<OnlineLearningContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 #endregion
+
+#region AutoMapping
+
+//builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+#endregion 
 
 var app = builder.Build();
 

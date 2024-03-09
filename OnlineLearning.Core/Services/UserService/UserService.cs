@@ -1,5 +1,7 @@
 ﻿using OnlineLearning.Core.Convertors;
 using OnlineLearning.Core.DTOs;
+using OnlineLearning.Core.Generators;
+using OnlineLearning.Core.Security;
 using OnlineLearning.Core.Services.UserService.Interfaces;
 using OnlineLearning.DataLayer.Entities;
 using OnlineLearning.DataLayer.Repositories.Interfaces;
@@ -45,12 +47,16 @@ namespace OnlineLearning.Core.Services.UserService
         {
             var user = new User()
             {
-                Email = register.Email,
+                ActiveCode = NameGenarators.GenerateUniqeCode(),
+                Email = FixText.FixEmail(register.Email),
+                IsActive = false,
                 Username = register.Username,
-                Password = register.Password
+                Password = PasswordHelper.EncodePasswordMd5(register.Password),
+                RegisterDate = DateTime.Now,
             };
 
             user = _userRepository.AddUser(user);
+            //SaveChanges
             return new UserViewModel()
             {
                 Id = user.Id,
