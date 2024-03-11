@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineLearning.Core.Services.UserService
+namespace OnlineLearning.Core.Services
 {
     internal class UserService : IUserService
     {
@@ -27,8 +27,8 @@ namespace OnlineLearning.Core.Services.UserService
 
         public bool IsExistEmail(string email)
         {
-           email = FixText.FixEmail(email);
-           return _userRepository.IsExistEmail(email);
+            email = FixText.FixEmail(email);
+            return _userRepository.IsExistEmail(email);
         }
 
         public bool IsExistUserName(string userName)
@@ -38,9 +38,9 @@ namespace OnlineLearning.Core.Services.UserService
 
         public bool Login(UserViewModel login)
         {
-           login.Email = FixText.FixEmail(login.Email);
+            login.Email = FixText.FixEmail(login.Email);
 
-            if (_userRepository.LoginUser(login.Email,login.Username))
+            if (_userRepository.LoginUser(login.Email, login.Username))
                 return true;
 
             return false;

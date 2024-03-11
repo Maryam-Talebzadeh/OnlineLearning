@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineLearning.Core.Services.UserService.Interfaces
+namespace OnlineLearning.Core.Services.Interfaces
 {
     public interface IUserService
     {
