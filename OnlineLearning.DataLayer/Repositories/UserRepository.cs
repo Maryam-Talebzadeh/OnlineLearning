@@ -21,7 +21,6 @@ namespace OnlineLearning.DataLayer.Repositories
         public User AddUser(User user)
         {
             _context.Users.Add(user);
-            _context.SaveChanges();
             return user;
         }
 

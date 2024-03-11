@@ -56,6 +56,7 @@ namespace OnlineLearning.Core.Services
                 Username = register.Username,
                 Password = PasswordHelper.EncodePasswordMd5(register.Password),
                 RegisterDate = DateTime.Now,
+                UserAvatar = "DefaultAvatar.jpg" 
             };
 
             user = _userRepository.AddUser(user);
