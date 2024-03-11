@@ -5,6 +5,7 @@ using OnlineLearning.Core.Security;
 using OnlineLearning.Core.Services.UserService.Interfaces;
 using OnlineLearning.DataLayer.Entities;
 using OnlineLearning.DataLayer.Repositories.Interfaces;
+using OnlineLearning.DataLayer.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,12 @@ namespace OnlineLearning.Core.Services.UserService
     internal class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public bool IsExistEmail(string email)
@@ -56,7 +59,8 @@ namespace OnlineLearning.Core.Services.UserService
             };
 
             user = _userRepository.AddUser(user);
-            //SaveChanges
+            _unitOfWork.Save();
+
             return new UserViewModel()
             {
                 Id = user.Id,
