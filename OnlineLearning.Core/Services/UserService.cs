@@ -2,7 +2,7 @@
 using OnlineLearning.Core.DTOs;
 using OnlineLearning.Core.Generators;
 using OnlineLearning.Core.Security;
-using OnlineLearning.Core.Services.UserService.Interfaces;
+using OnlineLearning.Core.Services.Interfaces;
 using OnlineLearning.DataLayer.Entities;
 using OnlineLearning.DataLayer.Repositories.Interfaces;
 using OnlineLearning.DataLayer.UnitOfWork;
