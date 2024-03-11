@@ -5,6 +5,7 @@ using OnlineLearning.DataLayer.Repositories;
 using OnlineLearning.DataLayer.Repositories.Interfaces;
 using System.Reflection;
 using OnlineLearning.Core.DTOs;
+using OnlineLearning.DataLayer.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddDbContext<OnlineLearningContext>(options =>
 
 #region IOC
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 #endregion
