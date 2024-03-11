@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace OnlineLearning.Core.Services
 {
-    internal class UserService : IUserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
