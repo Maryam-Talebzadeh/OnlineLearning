@@ -9,6 +9,7 @@ using OnlineLearning.DataLayer.UnitOfWork;
 using OnlineLearning.Core.Services.Interfaces;
 using OnlineLearning.Core.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using OnlineLearning.Core.Convertors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ builder.Services.AddDbContext<OnlineLearningContext>(options =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddTransient<IViewRenderService, RenderViewToString>();
 
 #endregion
 
