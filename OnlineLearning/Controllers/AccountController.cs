@@ -50,7 +50,7 @@ namespace OnlineLearning.Web.Controllers
         [Route("Login")]
         public IActionResult Login(LoginViewModel login)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View(login);
 
             var user = _userService.Login(login);
