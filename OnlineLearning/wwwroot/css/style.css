@@ -238,11 +238,11 @@ footer .top-footer{
 }
 .top-footer .list ul li a:hover{
   padding-right: 17px;
-  color: #37d43b
+  color: #290CF9
 }
 .top-footer .list ul li a:before{
   position: absolute;
-  color: #37d43b;
+  color: #290CF9;
   font-size: 6px;
   font-family: 'FontAwesome';
   content: '\f111';
