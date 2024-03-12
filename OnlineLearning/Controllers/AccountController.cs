@@ -90,6 +90,13 @@ namespace OnlineLearning.Web.Controllers
             return View();
         }
 
+        [Route("Logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/");
+        }
+
         [Route("ActiveAccount")]
         public IActionResult ActiveAccount(string activeCode)
         {
