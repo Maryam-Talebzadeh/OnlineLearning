@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using OnlineLearning.Core.Convertors;
 using OnlineLearning.Core.DTOs;
 using OnlineLearning.Core.Services.Interfaces;
 using System.Security.Claims;
@@ -10,10 +11,15 @@ namespace OnlineLearning.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
+        private readonly IViewRenderService _viewRenderService;
 
-        public AccountController(IUserService userService)
+
+        public AccountController(IUserService userService, IEmailService emailService, IViewRenderService viewRenderService)
         {
             _userService = userService;
+            _emailService = emailService;
+            _viewRenderService = viewRenderService;
         }
 
         [Route("Register")]
@@ -41,7 +47,22 @@ namespace OnlineLearning.Web.Controllers
                 return View(register);
             }
 
-            _userService.Register(register);
+           var user = _userService.Register(register);
+
+            #region Activation Email
+
+            var email = new EmailDTO()
+            {
+                Subject = register.Email,
+                Body = _viewRenderService.RenderToStringAsync("_ActiveEmail", user),
+                To = user.Email
+            };
+
+            _emailService.SendEmail(email);
+
+            #endregion
+
+
             return View("/Views/Home/Index.cshtml");
         }
 
@@ -97,7 +118,6 @@ namespace OnlineLearning.Web.Controllers
             return Redirect("/");
         }
 
-        [Route("ActiveAccount")]
         public IActionResult ActiveAccount(string activeCode)
         {
             ViewBag.IsActive = _userService.ActiveAccount(activeCode);

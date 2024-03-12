@@ -15,5 +15,6 @@ namespace OnlineLearning.Core.DTOs
         public bool IsActive { get; set; }
         public string UserAvatar { get; set; }
         public DateTime RegisterDate { get; set; }
+        public string ActiveCode { get; set; }
     }
 }

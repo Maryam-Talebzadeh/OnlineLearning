@@ -30,6 +30,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddTransient<IViewRenderService, RenderViewToString>();
+builder.Services.AddTransient<IEmailService, EmailService>();
 
 #endregion
 
