@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using OnlineLearning.Core.Convertors;
 using OnlineLearning.Core.DTOs;
+using OnlineLearning.Core.Security;
 using OnlineLearning.Core.Services.Interfaces;
 using System.Security.Claims;
 
@@ -155,6 +156,30 @@ namespace OnlineLearning.Web.Controllers
             _emailService.SendEmail(email);
             ViewBag.IsSuccess = true;
             return View();
+        }
+
+        public IActionResult ResetPassword(string id)
+        {
+            return View( new ResetPasswordViewModel
+            {
+                ActiveCode = id
+            });
+        }
+
+        [HttpPost]
+        public IActionResult ResetPassword(ResetPasswordViewModel reset)
+        {
+            if (!ModelState.IsValid)
+                return View(reset);
+
+            var user = _userService.GetUserByActiveCode(reset.ActiveCode);
+
+            if (user == null)
+                return NotFound();
+
+            user.Password = PasswordHelper.EncodePasswordMd5(reset.Password);
+            _userService.UpdateUser(user);
+            return Redirect("/Login");
         }
 
     }

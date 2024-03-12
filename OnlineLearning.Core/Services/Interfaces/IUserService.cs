@@ -16,5 +16,7 @@ namespace OnlineLearning.Core.Services.Interfaces
         public bool IsExistEmail(string email);
         public bool ActiveAccount(string ActiveCode);
         public UserViewModel GetUserByEmail(string email);
+        public UserViewModel GetUserByActiveCode(string activeCode);
+        public bool UpdateUser(UserViewModel user);
     }
 }

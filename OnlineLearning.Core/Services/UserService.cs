@@ -38,6 +38,24 @@ namespace OnlineLearning.Core.Services
             return false;
         }
 
+        public UserViewModel GetUserByActiveCode(string activeCode)
+        {
+            var user = _userRepository.GetUserByActiveCode(activeCode);
+
+            var newUser = new UserViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Password = user.Password,
+                IsActive = user.IsActive,
+                RegisterDate = user.RegisterDate,
+                UserAvatar = user.UserAvatar,
+                Username = user.Username
+            };
+
+            return newUser;
+        }
+
         public UserViewModel GetUserByEmail(string email)
         {
             email = FixText.FixEmail(email);
@@ -100,7 +118,7 @@ namespace OnlineLearning.Core.Services
                 Username = register.Username,
                 Password = PasswordHelper.EncodePasswordMd5(register.Password),
                 RegisterDate = DateTime.Now,
-                UserAvatar = "DefaultAvatar.jpg" ,
+                UserAvatar = "DefaultAvatar.jpg" 
                 
             };
 
@@ -118,6 +136,26 @@ namespace OnlineLearning.Core.Services
                 RegisterDate = user.RegisterDate,
                 ActiveCode = user.ActiveCode
             };
+        }
+
+        public bool UpdateUser(UserViewModel user)
+        {
+            if (_userRepository.GetUserById(user.Id) == null)
+                return false;
+
+            var dbUser = new User()
+            {
+                ActiveCode = user.ActiveCode,
+                Email = FixText.FixEmail(user.Email),
+                IsActive = user.IsActive,
+                Username = user.Username,
+                Password = PasswordHelper.EncodePasswordMd5(user.Password),
+                UserAvatar = user.UserAvatar
+            };
+
+            _userRepository.UpdateUser(dbUser);
+            _unitOfWork.Save();
+            return true;
         }
     }
 }

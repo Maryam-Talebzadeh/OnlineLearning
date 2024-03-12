@@ -54,6 +54,11 @@ namespace OnlineLearning.DataLayer.Repositories
             return _context.Users.ToList();
         }
 
+        public User GetUserByActiveCode(string activeCode)
+        {
+            return _context.Users.SingleOrDefault(u => u.ActiveCode == activeCode);
+        }
+
         public User GetUserByEmail(string email)
         {
             return _context.Users.SingleOrDefault(u => u.Email == email);
