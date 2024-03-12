@@ -18,6 +18,18 @@ namespace OnlineLearning.DataLayer.Repositories
             _context = context;
         }
 
+        public bool ActiveAccount(string ActiveCode)
+        {
+           var user = _context.Users.SingleOrDefault(u =>  u.ActiveCode == ActiveCode);
+
+            if (user == null || user.IsActive == true)
+                return false;
+
+            user.IsActive = true;
+            user.ActiveCode = Guid.NewGuid().ToString(); // Cant reference to core layer and use it's classes because of the defects of this 3 layer architecture.
+            return true;
+        }
+
         public User AddUser(User user)
         {
             _context.Users.Add(user);
@@ -57,13 +69,11 @@ namespace OnlineLearning.DataLayer.Repositories
              return _context.Users.Any(u => u.Username == userName);;
         }
 
-        public bool LoginUser(string email, string password)
+        public User LoginUser(string email, string password)
         {
-
-            if (_context.Users.Any(u => u.Email == email && u.Password == password))
-                return true;
-
-            return false;
+            var user = _context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
+            return user;
+                
         }
 
         public bool UpdateUser(User user)

@@ -42,5 +42,7 @@ namespace OnlineLearning.Core.DTOs
         [Required(ErrorMessage = "{0} را وارد کنید.")]
         [PasswordPropertyText]
         public string Password { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }

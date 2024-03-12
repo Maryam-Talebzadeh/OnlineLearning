@@ -10,8 +10,9 @@ namespace OnlineLearning.Core.Services.Interfaces
     public interface IUserService
     {
         public UserViewModel Register(RegisterViewModel register);
-        public bool Login(UserViewModel login);
+        public UserViewModel Login(LoginViewModel login);
         public bool IsExistUserName(string userName);
         public bool IsExistEmail(string email);
+        public bool ActiveAccount(string ActiveCode);
     }
 }

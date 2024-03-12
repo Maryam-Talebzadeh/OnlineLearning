@@ -1,4 +1,5 @@
-﻿using OnlineLearning.Core.Convertors;
+﻿using Microsoft.Win32;
+using OnlineLearning.Core.Convertors;
 using OnlineLearning.Core.DTOs;
 using OnlineLearning.Core.Generators;
 using OnlineLearning.Core.Security;
@@ -25,6 +26,18 @@ namespace OnlineLearning.Core.Services
             _unitOfWork = unitOfWork;
         }
 
+        public bool ActiveAccount(string ActiveCode)
+        {
+
+            if(_userRepository.ActiveAccount(ActiveCode))
+            {
+                _unitOfWork.Save();
+                return true;
+            }
+
+            return false;
+        }
+
         public bool IsExistEmail(string email)
         {
             email = FixText.FixEmail(email);
@@ -36,14 +49,24 @@ namespace OnlineLearning.Core.Services
             return _userRepository.IsExistUserName(userName);
         }
 
-        public bool Login(UserViewModel login)
+        public UserViewModel Login(LoginViewModel login)
         {
             login.Email = FixText.FixEmail(login.Email);
+            login.Password = PasswordHelper.EncodePasswordMd5(login.Password);
+            var user = _userRepository.LoginUser(login.Email, login.Password);
 
-            if (_userRepository.LoginUser(login.Email, login.Username))
-                return true;
+            var newUser = new UserViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Password = user.Password,
+                IsActive = user.IsActive,
+                RegisterDate = user.RegisterDate,
+                UserAvatar = user.UserAvatar,
+                Username = user.Username
+            };
 
-            return false;
+            return newUser;
         }
 
         public UserViewModel Register(RegisterViewModel register)
