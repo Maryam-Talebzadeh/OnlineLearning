@@ -118,9 +118,9 @@ namespace OnlineLearning.Web.Controllers
             return Redirect("/");
         }
 
-        public IActionResult ActiveAccount(string activeCode)
+        public IActionResult ActiveAccount(string id)
         {
-            ViewBag.IsActive = _userService.ActiveAccount(activeCode);
+            ViewBag.IsActive = _userService.ActiveAccount(id);
             return View();
         }
 

@@ -79,7 +79,8 @@ namespace OnlineLearning.Core.Services
                 Username = register.Username,
                 Password = PasswordHelper.EncodePasswordMd5(register.Password),
                 RegisterDate = DateTime.Now,
-                UserAvatar = "DefaultAvatar.jpg" 
+                UserAvatar = "DefaultAvatar.jpg" ,
+                
             };
 
             user = _userRepository.AddUser(user);
@@ -93,7 +94,8 @@ namespace OnlineLearning.Core.Services
                 Username = user.Username,
                 UserAvatar = user.UserAvatar,
                 IsActive = user.IsActive,
-                RegisterDate = user.RegisterDate
+                RegisterDate = user.RegisterDate,
+                ActiveCode = user.ActiveCode
             };
         }
     }
