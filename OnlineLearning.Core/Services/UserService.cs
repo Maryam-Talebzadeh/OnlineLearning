@@ -38,10 +38,31 @@ namespace OnlineLearning.Core.Services
             return false;
         }
 
+        public UserViewModel GetUserByEmail(string email)
+        {
+            email = FixText.FixEmail(email);
+            var user = _userRepository.GetUserByEmail(email);
+
+            var newUser = new UserViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Password = user.Password,
+                IsActive = user.IsActive,
+                RegisterDate = user.RegisterDate,
+                UserAvatar = user.UserAvatar,
+                Username = user.Username
+            };
+
+            return newUser;
+
+        }
+
         public bool IsExistEmail(string email)
         {
             email = FixText.FixEmail(email);
             return _userRepository.IsExistEmail(email);
+
         }
 
         public bool IsExistUserName(string userName)

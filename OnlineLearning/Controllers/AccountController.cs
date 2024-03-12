@@ -53,7 +53,7 @@ namespace OnlineLearning.Web.Controllers
 
             var email = new EmailDTO()
             {
-                Subject = register.Email,
+                Subject = "فعالسازی حساب کاربری",
                 Body = _viewRenderService.RenderToStringAsync("_ActiveEmail", user),
                 To = user.Email
             };
@@ -121,6 +121,39 @@ namespace OnlineLearning.Web.Controllers
         public IActionResult ActiveAccount(string id)
         {
             ViewBag.IsActive = _userService.ActiveAccount(id);
+            return View();
+        }
+
+        [Route("ForgotPassword")]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [Route("ForgotPassword")]
+        [HttpPost]
+        public IActionResult ForgotPassword(ForgotPasswordViewModel forgot)
+        {
+            if (!ModelState.IsValid)
+                return View(forgot);
+
+            var user = _userService.GetUserByEmail(forgot.Email);
+
+            if(user == null)
+            {
+                ModelState.AddModelError("Email", "کاربری یافت نشد.");
+                return View(forgot);
+            }
+
+            var email = new EmailDTO()
+            {
+                Subject = "بازیابی کلمه عبور",
+                To = user.Email,
+                Body = _viewRenderService.RenderToStringAsync("_ForgotPasswordEmail", user)
+            };
+
+            _emailService.SendEmail(email);
+            ViewBag.IsSuccess = true;
             return View();
         }
 

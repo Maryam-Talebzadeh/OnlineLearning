@@ -18,5 +18,6 @@ namespace OnlineLearning.DataLayer.Repositories.Interfaces
         public bool IsExistEmail(string email);
         public bool IsExistUserName(string userName);
         public bool ActiveAccount(string ActiveCode);
+        public User GetUserByEmail(string email);
     }
 }

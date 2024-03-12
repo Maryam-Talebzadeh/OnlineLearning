@@ -1,4 +1,5 @@
 ﻿using OnlineLearning.Core.DTOs;
+using OnlineLearning.DataLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace OnlineLearning.Core.Services.Interfaces
         public bool IsExistUserName(string userName);
         public bool IsExistEmail(string email);
         public bool ActiveAccount(string ActiveCode);
+        public UserViewModel GetUserByEmail(string email);
     }
 }
