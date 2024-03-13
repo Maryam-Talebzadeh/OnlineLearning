@@ -24,6 +24,8 @@ namespace OnlineLearning.Core.Services.Interfaces
 
         public InformationUserViewModel GetUserInformation(string userName);
         public SidebarUserPanelViewModel GetUserInformationForSideBar(string userName);
+        public EditProfileViewModel GetDataForEditProfileUser(string userName);
+        public void EditProfile(string userName, EditProfileViewModel profile);
 
         #endregion
     }

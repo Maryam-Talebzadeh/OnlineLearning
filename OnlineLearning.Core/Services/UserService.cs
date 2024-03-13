@@ -38,6 +38,50 @@ namespace OnlineLearning.Core.Services
             return false;
         }
 
+        public void EditProfile(string userName, EditProfileViewModel profile)
+        {
+            var user = _userRepository.GetUserByName(userName);
+
+            if(profile.UserAvatar != null)
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UserAvatars");
+
+               if(profile.AvatarName != "DefaultAvatar.jpg")
+                    {
+                    if (File.Exists(Path.Combine(path, profile.AvatarName)))
+                        File.Delete(Path.Combine(path, profile.AvatarName));
+                }
+
+                profile.AvatarName = user.Id + Path.GetExtension(profile.UserAvatar.FileName);
+                path = Path.Combine(path, profile.AvatarName);
+
+                using(FileStream stream = new FileStream(path,FileMode.Create))
+                {
+                    profile.UserAvatar.CopyTo(stream);
+                }
+
+            }
+
+            user.Username = profile.Username;
+            user.Email = profile.Email;
+            user.UserAvatar = profile.AvatarName;
+
+            _userRepository.UpdateUser(user);
+            _unitOfWork.Save();
+        }
+
+        public EditProfileViewModel GetDataForEditProfileUser(string userName)
+        {
+            var user = GetUserInformation(userName);
+
+            return new EditProfileViewModel()
+            {
+                Username = user.Username,
+                Email = user.Email,
+                AvatarName = user.ImageName
+            };
+        }
+
         public UserViewModel GetUserByActiveCode(string activeCode)
         {
             var user = _userRepository.GetUserByActiveCode(activeCode);

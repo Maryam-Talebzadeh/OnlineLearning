@@ -68,8 +68,11 @@ namespace OnlineLearning.Web.Controllers
         }
 
         [Route("Login")]
-        public IActionResult Login()
-            => View();
+        public IActionResult Login(bool EditProfile = false)
+        {
+            ViewBag.EditProfile = EditProfile;
+            return  View();
+        }
 
         [HttpPost]
         [Route("Login")]
@@ -106,7 +109,7 @@ namespace OnlineLearning.Web.Controllers
                 };
 
                 HttpContext.SignInAsync(principal, properties);
-                return Redirect("/");
+                return Redirect("/userpanel");
             }
 
             return View();
