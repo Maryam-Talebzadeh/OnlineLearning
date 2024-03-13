@@ -12,5 +12,13 @@ namespace OnlineLearning.Core.DTOs
         public string Email { get; set; }
         public DateTime RegisterDate { get; set; }
         public int Wallet { get; set; } = 0;
+        public string ImageName { get; set; }
+    }
+
+    public class SidebarUserPanelViewModel
+    {
+        public string Username { get; set; }
+        public DateTime RegisterDate { get; set; }
+        public string ImageName { get; set; }
     }
 }

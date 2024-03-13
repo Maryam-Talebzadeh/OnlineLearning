@@ -12,12 +12,13 @@ namespace OnlineLearning.Web.Areas.UserPanel.Controllers
 
         public HomeController(IUserService userService)
         {
-            _userService = _userService;
+            _userService = userService;
         }
 
         public IActionResult Index()
         {
-            return View(_userService.GetUserInformation(User.Identity.Name));
+            var user = _userService.GetUserInformation(User.Identity.Name);
+            return View(user);
         }
     }
 }

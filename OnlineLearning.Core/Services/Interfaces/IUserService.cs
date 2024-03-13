@@ -23,6 +23,7 @@ namespace OnlineLearning.Core.Services.Interfaces
         #region UserPanel
 
         public InformationUserViewModel GetUserInformation(string userName);
+        public SidebarUserPanelViewModel GetUserInformationForSideBar(string userName);
 
         #endregion
     }

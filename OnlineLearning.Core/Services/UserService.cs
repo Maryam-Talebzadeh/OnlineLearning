@@ -98,11 +98,25 @@ namespace OnlineLearning.Core.Services
         {
             var user = _userRepository.GetUserByName(userName);
 
+            
             return new InformationUserViewModel()
             {
                 Username = user.Username,
                 Email = user.Email,
-                RegisterDate = user.RegisterDate
+                RegisterDate = user.RegisterDate,
+                ImageName = user.UserAvatar
+            };
+        }
+
+        public SidebarUserPanelViewModel GetUserInformationForSideBar(string userName)
+        {
+            var user = GetUserInformation(userName);
+
+            return new SidebarUserPanelViewModel()
+            {
+                Username = user.Username,
+                RegisterDate = user.RegisterDate,
+                ImageName = user.ImageName
             };
         }
 
