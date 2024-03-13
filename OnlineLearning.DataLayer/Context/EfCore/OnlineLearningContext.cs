@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineLearning.DataLayer.Entities;
+using OnlineLearning.DataLayer.Entities.Wallet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,19 @@ namespace OnlineLearning.DataLayer.Context.EfCore
             
         }
 
+        #region User
+
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+
+        #endregion
+
+        #region Wallet
+
+        public DbSet<Wallet> Wallet { get; set; }
+        public DbSet<WalletType> WalletType { get; set; }
+
+        #endregion
     }
 }
