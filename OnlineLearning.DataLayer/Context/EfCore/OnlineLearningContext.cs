@@ -26,8 +26,8 @@ namespace OnlineLearning.DataLayer.Context.EfCore
 
         #region Wallet
 
-        public DbSet<Wallet> Wallet { get; set; }
-        public DbSet<WalletType> WalletType { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<WalletType> WalletTypes { get; set; }
 
         #endregion
     }
