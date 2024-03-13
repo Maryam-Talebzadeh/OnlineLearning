@@ -36,6 +36,11 @@ namespace OnlineLearning.DataLayer.Repositories
             return user;
         }
 
+        public bool CompareOldPassword(string userName, string password)
+        {
+          return  _context.Users.Any(u => u.Username == userName && u.Password == password);
+        }
+
         public bool DeleteUser(User user)
         {
             try

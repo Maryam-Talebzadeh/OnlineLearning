@@ -38,6 +38,20 @@ namespace OnlineLearning.Core.Services
             return false;
         }
 
+        public void ChangeUserPassword(string userName, string newPassword)
+        {
+            var user = _userRepository.GetUserByName(userName);
+            user.Password = PasswordHelper.EncodePasswordMd5(newPassword);
+            _userRepository.UpdateUser(user);
+            _unitOfWork.Save();
+        }
+
+        public bool CompareOldPassword(string userName, string password)
+        {
+            var hashedPassword = PasswordHelper.EncodePasswordMd5(password);
+            return _userRepository.CompareOldPassword(userName,hashedPassword);
+        }
+
         public void EditProfile(string userName, EditProfileViewModel profile)
         {
             var user = _userRepository.GetUserByName(userName);

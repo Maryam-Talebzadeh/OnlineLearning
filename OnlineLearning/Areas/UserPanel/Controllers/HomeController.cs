@@ -42,5 +42,30 @@ namespace OnlineLearning.Web.Areas.UserPanel.Controllers
             return Redirect("/Login?EditProfile=true");
 
         }
+
+        [Route("UserPanel/ChangePassword")]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [Route("UserPanel/ChangePassword")]
+        [HttpPost]
+        public IActionResult ChangePassword(ChangePasswordViewModel change)
+        {
+            if (!ModelState.IsValid)
+                return View(change);
+
+            string currentUserName = User.Identity.Name;
+
+            if(!_userService.CompareOldPassword(currentUserName, change.OldPassword))
+            {
+                ModelState.AddModelError("OldPassword", "رمز عبور فعلی نامعتبر است");
+                return View(change);                  
+            }
+
+            _userService.ChangeUserPassword(currentUserName, change.Password);
+            return Redirect("/UserPanel");
+        }
     }
 }

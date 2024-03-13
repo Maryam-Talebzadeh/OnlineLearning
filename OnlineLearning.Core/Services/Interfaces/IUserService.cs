@@ -26,6 +26,8 @@ namespace OnlineLearning.Core.Services.Interfaces
         public SidebarUserPanelViewModel GetUserInformationForSideBar(string userName);
         public EditProfileViewModel GetDataForEditProfileUser(string userName);
         public void EditProfile(string userName, EditProfileViewModel profile);
+        public bool CompareOldPassword(string userName, string password);
+        public void ChangeUserPassword(string userName, string newPassword);
 
         #endregion
     }
