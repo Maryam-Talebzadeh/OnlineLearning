@@ -76,6 +76,36 @@ namespace OnlineLearning.Core.Services
 
         }
 
+        public UserViewModel GetUserById(int id)
+        {
+            var user = _userRepository.GetUserById(id);
+
+            var newUser = new UserViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Password = user.Password,
+                IsActive = user.IsActive,
+                RegisterDate = user.RegisterDate,
+                UserAvatar = user.UserAvatar,
+                Username = user.Username
+            };
+
+            return newUser;
+        }
+
+        public InformationUserViewModel GetUserInformation(string userName)
+        {
+            var user = _userRepository.GetUserByName(userName);
+
+            return new InformationUserViewModel()
+            {
+                Username = user.Username,
+                Email = user.Email,
+                RegisterDate = user.RegisterDate
+            };
+        }
+
         public bool IsExistEmail(string email)
         {
             email = FixText.FixEmail(email);

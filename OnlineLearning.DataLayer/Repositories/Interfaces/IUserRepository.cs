@@ -20,5 +20,6 @@ namespace OnlineLearning.DataLayer.Repositories.Interfaces
         public bool ActiveAccount(string ActiveCode);
         public User GetUserByEmail(string email);
         public User GetUserByActiveCode(string activeCode);
+        public User GetUserByName(string userName);
     }
 }

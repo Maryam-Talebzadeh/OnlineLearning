@@ -69,6 +69,11 @@ namespace OnlineLearning.DataLayer.Repositories
             return _context.Users.SingleOrDefault(u => u.Id == id);
         }
 
+        public User GetUserByName(string userName)
+        {
+            return _context.Users.SingleOrDefault(u => u.Username == userName);
+        }
+
         public bool IsExistEmail(string email)
         {
             return _context.Users.Any(u => u.Email == email);

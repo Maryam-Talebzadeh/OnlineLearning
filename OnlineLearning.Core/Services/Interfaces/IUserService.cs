@@ -16,7 +16,14 @@ namespace OnlineLearning.Core.Services.Interfaces
         public bool IsExistEmail(string email);
         public bool ActiveAccount(string ActiveCode);
         public UserViewModel GetUserByEmail(string email);
+        public UserViewModel GetUserById(int id);
         public UserViewModel GetUserByActiveCode(string activeCode);
         public bool UpdateUser(UserViewModel user);
+
+        #region UserPanel
+
+        public InformationUserViewModel GetUserInformation(string userName);
+
+        #endregion
     }
 }

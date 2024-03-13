@@ -70,4 +70,6 @@ namespace OnlineLearning.Core.DTOs
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
         public string RePassword { get; set; }
     }
+
+
 }

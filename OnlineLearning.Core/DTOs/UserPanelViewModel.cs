@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace OnlineLearning.Core.DTOs
 {
-    public class UserViewModel
+    public class InformationUserViewModel
     {
-        public int Id { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; }
         public string Email { get; set; }
-        public bool IsActive { get; set; }
-        public string UserAvatar { get; set; }
         public DateTime RegisterDate { get; set; }
-        public string ActiveCode { get; set; }
         public int Wallet { get; set; } = 0;
     }
 }
