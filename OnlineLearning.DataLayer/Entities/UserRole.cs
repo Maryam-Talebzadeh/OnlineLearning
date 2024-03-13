@@ -11,7 +11,7 @@ namespace OnlineLearning.DataLayer.Entities
 
         public UserRole()
         {
-            
+
         }
 
         public int Id { get; set; }
