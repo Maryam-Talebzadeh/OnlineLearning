@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineLearning.DataLayer.Entities.Wallet;
 
 namespace OnlineLearning.DataLayer.Entities
 {
     public class User
     {
+        public User()
+        {
+            
+        }
+
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -20,6 +26,7 @@ namespace OnlineLearning.DataLayer.Entities
         #region Navigation Properties
 
         public virtual List<UserRole> UserRoles { get; set; }
+        public virtual List<Wallet.Wallet> Wallets { get; set; }
 
         #endregion
     }

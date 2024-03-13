@@ -10,11 +10,20 @@ namespace OnlineLearning.DataLayer.Entities.Wallet
 {
     public class WalletType
     {
+        public WalletType()
+        {
+            
+        }
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد")]
         public string Title { get; set; }
+
+        #region Navigation properties
+
+        public virtual List<Wallet> Wallets { get; set; }
+
+        #endregion
     }
 }
