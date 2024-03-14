@@ -14,7 +14,7 @@ namespace OnlineLearning.Core.DTOs
         public string Username { get; set; }
         public string Email { get; set; }
         public DateTime RegisterDate { get; set; }
-        public int Wallet { get; set; } = 0;
+        public decimal Wallet { get; set; } = 0;
         public string ImageName { get; set; }
     }
 

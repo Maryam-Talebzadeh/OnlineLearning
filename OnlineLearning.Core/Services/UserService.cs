@@ -19,11 +19,13 @@ namespace OnlineLearning.Core.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWalletService _walletService;
 
-        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork, IWalletService walletService)
         {
             _userRepository = userRepository;
             _unitOfWork = unitOfWork;
+            _walletService = walletService;
         }
 
         public bool ActiveAccount(string ActiveCode)
@@ -156,13 +158,14 @@ namespace OnlineLearning.Core.Services
         {
             var user = _userRepository.GetUserByName(userName);
 
-            
+
             return new InformationUserViewModel()
             {
                 Username = user.Username,
                 Email = user.Email,
                 RegisterDate = user.RegisterDate,
-                ImageName = user.UserAvatar
+                ImageName = user.UserAvatar,
+                Wallet = _walletService.BallanceUserWallet(user.Id)
             };
         }
 
