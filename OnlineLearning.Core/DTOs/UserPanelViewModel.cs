@@ -58,4 +58,5 @@ namespace OnlineLearning.Core.DTOs
         [Compare("Password", ErrorMessage = "تکرار کلمه عبور با کلمه عبور مغایرت دارد.")]
         public string RePassword { get; set; }
     }
+
 }
