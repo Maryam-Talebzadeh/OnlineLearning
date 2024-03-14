@@ -31,6 +31,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddTransient<IViewRenderService, RenderViewToString>();
 builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 
 #endregion
 

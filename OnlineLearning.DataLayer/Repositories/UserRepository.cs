@@ -100,7 +100,7 @@ namespace OnlineLearning.DataLayer.Repositories
         {
             try
             {
-                _context.Users.Update(user);
+                _context.SaveChanges();
                 return true;
             }
             catch
