@@ -22,5 +22,6 @@ namespace OnlineLearning.DataLayer.Repositories.Interfaces
         public User GetUserByActiveCode(string activeCode);
         public User GetUserByName(string userName);
         public bool CompareOldPassword(string userName,  string password);
+        public int GetIdByUserName(string userName);
     }
 }

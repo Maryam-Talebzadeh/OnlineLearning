@@ -98,6 +98,11 @@ namespace OnlineLearning.Core.Services
             };
         }
 
+        public int GetIdByUserName(string userName)
+        {
+           return _userRepository.GetIdByUserName(userName);
+        }
+
         public UserViewModel GetUserByActiveCode(string activeCode)
         {
             var user = _userRepository.GetUserByActiveCode(activeCode);

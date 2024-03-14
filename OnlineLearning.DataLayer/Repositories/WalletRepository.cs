@@ -1,4 +1,5 @@
 ﻿using OnlineLearning.DataLayer.Context.EfCore;
+using OnlineLearning.DataLayer.Entities.Wallet;
 using OnlineLearning.DataLayer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,25 @@ namespace OnlineLearning.DataLayer.Repositories
             _context = context;
         }
 
+        public void ChargeWallet(Wallet wallet)
+        {
+            _context.Wallets.Add(wallet);
+            _context.SaveChanges();
+        }
+
         public decimal GetUserDeposits(int userId)
         {
-            return _context.Wallets.Where(w => w.UserId == userId && w.TypeId == 1).Select(w => w.Amount).ToList().Sum();
+            return _context.Wallets.Where(w => w.UserId == userId && w.TypeId == 1 && w.IsPaid == true).Select(w => w.Amount).ToList().Sum();
+        }
+
+        public List<Wallet> GetUserWalets(int userId)
+        {
+            return _context.Wallets.Where(w => w.UserId == userId && w.IsPaid == true).Select(w => w).ToList();
         }
 
         public decimal GetUserWithdrawals(int userId)
         {
-            return _context.Wallets.Where(w => w.UserId == userId && w.TypeId == 2).Select(w => w.Amount).ToList().Sum();
+            return _context.Wallets.Where(w => w.UserId == userId && w.TypeId == 2 && w.IsPaid == true).Select(w => w.Amount).ToList().Sum();
         }
     }
 }

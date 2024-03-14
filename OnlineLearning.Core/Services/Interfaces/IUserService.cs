@@ -18,6 +18,7 @@ namespace OnlineLearning.Core.Services.Interfaces
         public UserViewModel GetUserByEmail(string email);
         public UserViewModel GetUserById(int id);
         public UserViewModel GetUserByActiveCode(string activeCode);
+        public int GetIdByUserName(string userName);
         public bool UpdateUser(UserViewModel user);
 
         #region UserPanel
