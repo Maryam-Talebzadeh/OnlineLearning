@@ -13,7 +13,7 @@ namespace OnlineLearning.DataLayer.Context.EfCore
     {
         public OnlineLearningContext(DbContextOptions<OnlineLearningContext> options) : base(options)
         {
-            
+
         }
 
         #region User
@@ -30,5 +30,35 @@ namespace OnlineLearning.DataLayer.Context.EfCore
         public DbSet<WalletType> WalletTypes { get; set; }
 
         #endregion
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            #region Role
+
+            modelBuilder.Entity<Role>().HasData(
+                new Role()
+                {
+                    Id = 1,
+                    Title = "مدیر سایت"
+
+                },
+                new Role()
+                {
+                    Id = 2,
+                    Title = "مدرس"
+
+                },
+                new Role()
+                {
+                    Id = 3,
+                    Title = "کاربر عادی"
+
+                });
+
+            #endregion
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
