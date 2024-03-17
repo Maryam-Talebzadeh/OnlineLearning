@@ -12,6 +12,8 @@ namespace OnlineLearning.Core.Services.Interfaces
     {
         public decimal BallanceUserWallet(int userId);
         public List<WalletViewModel> GetUserWalets(int userId);
-        public void ChargeWallet(WalletViewModel wallet, int userId);
+        public int ChargeWallet(WalletViewModel wallet, int userId);
+        public WalletViewModel GetWalletById(int walletId);
+        public void UpdateWallet(WalletViewModel wallet);
     }
 }

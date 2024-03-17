@@ -18,10 +18,11 @@ namespace OnlineLearning.DataLayer.Repositories
             _context = context;
         }
 
-        public void ChargeWallet(Wallet wallet)
+        public int ChargeWallet(Wallet wallet)
         {
             _context.Wallets.Add(wallet);
             _context.SaveChanges();
+            return wallet.Id;
         }
 
         public decimal GetUserDeposits(int userId)
@@ -31,12 +32,22 @@ namespace OnlineLearning.DataLayer.Repositories
 
         public List<Wallet> GetUserWalets(int userId)
         {
-            return _context.Wallets.Where(w => w.UserId == userId && w.IsPaid == true).Select(w => w).ToList();
+            return _context.Wallets.Where(w => w.UserId == userId /*&& w.IsPaid == true*/).Select(w => w).ToList();
         }
 
         public decimal GetUserWithdrawals(int userId)
         {
             return _context.Wallets.Where(w => w.UserId == userId && w.TypeId == 2 && w.IsPaid == true).Select(w => w.Amount).ToList().Sum();
+        }
+
+        public Wallet GetWalletById(int walletId)
+        {
+            return _context.Wallets.SingleOrDefault(w => w.Id == walletId);
+        }
+
+        public void Update()
+        {
+            _context.SaveChanges();
         }
     }
 }

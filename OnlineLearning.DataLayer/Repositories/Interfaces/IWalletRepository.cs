@@ -12,6 +12,8 @@ namespace OnlineLearning.DataLayer.Repositories.Interfaces
         public decimal GetUserDeposits(int userId);
         public decimal GetUserWithdrawals(int userId);
         public List<Wallet> GetUserWalets(int userId);
-        public void ChargeWallet(Wallet wallet);
+        public int ChargeWallet(Wallet wallet);
+        public Wallet GetWalletById(int walletId);
+        public void Update();
     }
 }

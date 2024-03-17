@@ -16,7 +16,7 @@ namespace OnlineLearning.DataLayer.Entities.Wallet
         public int Id { get; set; }
         public int TypeId { get; set; }
         public int UserId { get; set; }
-        public decimal Amount { get; set; }
+        public int Amount { get; set; }
         public bool IsPaid { get; set; }
         public string Description { get; set; }
         public DateTime RegisterDate { get; set; }

@@ -21,11 +21,16 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.1" />
+    <PackageReference Include="ZarinPalSandBox" Version="2.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineLearning.Core\OnlineLearning.Core.csproj" />
     <ProjectReference Include="..\OnlineLearning.DataLayer\OnlineLearning.DataLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Admin\Shared\" />
   </ItemGroup>
 
 </Project>

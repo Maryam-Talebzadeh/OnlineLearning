@@ -27,10 +27,11 @@ namespace OnlineLearning.Core.Services
             return deposits - withdrawals;
         }
 
-        public void ChargeWallet(WalletViewModel wallet, int userId)
+        public int ChargeWallet(WalletViewModel wallet, int userId)
         {
             var newWallet = new Wallet()
             {
+                Id = wallet.Id,
                 Amount = wallet.Amount,
                 Description = wallet.Description,
                 IsPaid = false,
@@ -39,18 +40,42 @@ namespace OnlineLearning.Core.Services
                 UserId = userId
             };
 
-            _walletRepository.ChargeWallet(newWallet);
+           return _walletRepository.ChargeWallet(newWallet);
         }
 
         public List<WalletViewModel> GetUserWalets(int userId)
         {
             return _walletRepository.GetUserWalets(userId).Select(w => new WalletViewModel()
             {
+                Id = w.Id,
+                IsPaid = w.IsPaid,
                 Amount = w.Amount,
                 Description = w.Description,
                 RegisterDate = w.RegisterDate,
                 Type = w.TypeId
             }).ToList();
+        }
+
+        public WalletViewModel GetWalletById(int walletId)
+        {
+            var wallet = _walletRepository.GetWalletById(walletId);
+
+            return new WalletViewModel()
+            {
+                Id = wallet.Id,
+                IsPaid = wallet.IsPaid,
+                Amount = wallet.Amount,
+                Description = wallet.Description,
+                RegisterDate = wallet.RegisterDate,
+                Type = wallet.TypeId
+            };
+        }
+
+        public void UpdateWallet(WalletViewModel wallet)
+        {
+            var dbWallet = GetWalletById(wallet.Id);
+            dbWallet.IsPaid = wallet.IsPaid;
+            _walletRepository.Update();
         }
     }
 }
