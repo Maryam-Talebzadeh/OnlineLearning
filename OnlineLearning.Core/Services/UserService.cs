@@ -68,7 +68,7 @@ namespace OnlineLearning.Core.Services
                         File.Delete(Path.Combine(path, profile.AvatarName));
                 }
 
-                profile.AvatarName = user.Id + Path.GetExtension(profile.UserAvatar.FileName);
+                profile.AvatarName = NameGenarators.GenerateUniqeCode + Path.GetExtension(profile.UserAvatar.FileName);
                 path = Path.Combine(path, profile.AvatarName);
 
                 using(FileStream stream = new FileStream(path,FileMode.Create))

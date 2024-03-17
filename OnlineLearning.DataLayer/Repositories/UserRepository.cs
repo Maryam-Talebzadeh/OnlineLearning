@@ -30,9 +30,24 @@ namespace OnlineLearning.DataLayer.Repositories
             return true;
         }
 
+        public void AddRolesToUser(List<int> Roles, int userId)
+        {
+            foreach(int id in Roles)
+            {
+                _context.UserRoles.Add(new UserRole()
+                {
+                    RoleId = id,
+                    UserId = userId
+                });
+            }
+
+            _context.SaveChanges();
+        }
+
         public User AddUser(User user)
         {
             _context.Users.Add(user);
+            _context.SaveChanges();
             return user;
         }
 
@@ -62,6 +77,11 @@ namespace OnlineLearning.DataLayer.Repositories
         public int GetIdByUserName(string userName)
         {
             return _context.Users.Where(u => u.Username == userName).Select(u => u.Id).Single();
+        }
+
+        public List<Role> GetRoles()
+        {
+            return _context.Roles.ToList();
         }
 
         public User GetUserByActiveCode(string activeCode)

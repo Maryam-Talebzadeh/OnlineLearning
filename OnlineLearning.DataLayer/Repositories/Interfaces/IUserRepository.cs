@@ -24,5 +24,12 @@ namespace OnlineLearning.DataLayer.Repositories.Interfaces
         public bool CompareOldPassword(string userName,  string password);
         public int GetIdByUserName(string userName);
         public List<User> SearchUsers(string filterEmail = "", string filterUserName = "");
+
+        #region Role
+
+        public List<Role> GetRoles();
+        public void AddRolesToUser(List<int> Roles, int userId);
+
+        #endregion
     }
 }

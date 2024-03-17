@@ -15,12 +15,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services
-    .AddRazorPages()
-    .AddRazorPagesOptions(options =>
-    {
-        options.Conventions.AddPageRoute("/index", "{*url}");
-    });
+//builder.Services
+//    .AddRazorPages()
+//    .AddRazorPagesOptions(options =>
+//    {
+//        options.Conventions.AddPageRoute("/index", "{*url}");
+//    });
 
 #region DbContext
 
@@ -41,6 +41,7 @@ builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 builder.Services.AddTransient<IWalletService, WalletService>();
 builder.Services.AddTransient<IAdminService, AdminService>();
+builder.Services.AddTransient<IPermissionService, PermissionService>();
 
 #endregion
 

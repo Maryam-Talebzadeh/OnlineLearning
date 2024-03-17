@@ -29,15 +29,8 @@ namespace OnlineLearning.Core.DTOs
 
         [Display(Name = "کلمه عبور")]
         [Required(ErrorMessage = "{0} را وارد کنید.")]
-        [PasswordPropertyText]
         public string Password { get; set; }
 
-        [Display(Name = "تکرار کلمه عبور")]
-        [Required(ErrorMessage = "{0} را وارد کنید.")]
-        [PasswordPropertyText]
-        [Compare("Password", ErrorMessage = "تکرار کلمه عبور با کلمه عبور مغایرت دارد.")]
-        public string RePassword { get; set; }
         public IFormFile UserAvatar { get; set; }
-        public List<int> SelectedRoles { get; set; }
     }
 }
