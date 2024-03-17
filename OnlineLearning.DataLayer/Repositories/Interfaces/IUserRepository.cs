@@ -23,5 +23,6 @@ namespace OnlineLearning.DataLayer.Repositories.Interfaces
         public User GetUserByName(string userName);
         public bool CompareOldPassword(string userName,  string password);
         public int GetIdByUserName(string userName);
+        public List<User> SearchUsers(string filterEmail = "", string filterUserName = "");
     }
 }

@@ -14,6 +14,13 @@ using OnlineLearning.Core.Convertors;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+builder.Services
+    .AddRazorPages()
+    .AddRazorPagesOptions(options =>
+    {
+        options.Conventions.AddPageRoute("/index", "{*url}");
+    });
 
 #region DbContext
 
@@ -33,6 +40,7 @@ builder.Services.AddTransient<IViewRenderService, RenderViewToString>();
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 builder.Services.AddTransient<IWalletService, WalletService>();
+builder.Services.AddTransient<IAdminService, AdminService>();
 
 #endregion
 
@@ -67,6 +75,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapRazorPages();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -74,5 +84,7 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+
 
 app.Run();

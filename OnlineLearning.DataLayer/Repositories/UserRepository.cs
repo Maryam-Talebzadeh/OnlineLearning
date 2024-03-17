@@ -101,6 +101,23 @@ namespace OnlineLearning.DataLayer.Repositories
                 
         }
 
+        public List<User> SearchUsers(string filterEmail = "", string filterUserName = "")
+        {
+            IQueryable<User> users = _context.Users;
+
+            if(!string.IsNullOrEmpty(filterEmail))
+            {
+                users = users.Where(u => u.Email.Contains(filterEmail));
+            }
+
+            if (!string.IsNullOrEmpty(filterUserName))
+            {
+                users = users.Where(u => u.Username.Contains(filterUserName));
+            }
+
+            return users.ToList();
+        }
+
         public bool UpdateUser(User user)
         {
             try
