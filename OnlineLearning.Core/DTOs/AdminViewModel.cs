@@ -33,4 +33,24 @@ namespace OnlineLearning.Core.DTOs
 
         public IFormFile UserAvatar { get; set; }
     }
+
+    public class EditUserViewModel
+    {
+        public int Id { get; set; }
+        public string Username { get; set; }
+
+        [Display(Name = "ایمیل")]
+        [Required(ErrorMessage = "{0} را وارد کنید.")]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Display(Name = "کلمه عبور")]
+        [Required(ErrorMessage = "{0} را وارد کنید.")]
+        public string Password { get; set; }
+
+        public IFormFile? UserAvatar { get; set; }
+        public List<int>? UserRoles { get; set; }
+        public string AvatarName { get; set; }
+
+    }
 }

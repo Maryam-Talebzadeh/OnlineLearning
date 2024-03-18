@@ -12,6 +12,7 @@ namespace OnlineLearning.Core.Services.Interfaces
         #region Roles
 
         public List<RoleViewModel> GetRoles();
+        public void EditRoles(int userId, List<int> RolesId);
 
         #endregion
     }

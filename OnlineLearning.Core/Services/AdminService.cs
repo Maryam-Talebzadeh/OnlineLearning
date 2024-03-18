@@ -59,6 +59,55 @@ namespace OnlineLearning.Core.Services
 
         }
 
+        public void EditUser(EditUserViewModel editUser)
+        {
+            var user = _userRepository.GetUserById(editUser.Id);
+
+            if (!string.IsNullOrEmpty(editUser.Password))
+                user.Password = PasswordHelper.EncodePasswordMd5(editUser.Password);
+            
+            user.Email = editUser.Email;
+
+            if(editUser.UserAvatar != null)
+            {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UserAvatars");
+
+                if(editUser.AvatarName != "DefaultAvatar.jpg")
+                {
+                    if(Directory.Exists(Path.Combine(path,editUser.AvatarName)))
+                    {
+                        Directory.Delete(Path.Combine(path, editUser.AvatarName));
+                    }
+                }
+
+                editUser.AvatarName = NameGenarators.GenerateUniqeCode() + Path.GetExtension(editUser.UserAvatar.FileName);
+
+                using(var stream = new FileStream(Path.Combine(path, editUser.AvatarName), FileMode.Create))
+                {
+                    editUser.UserAvatar.CopyTo(stream);
+                }
+
+            }
+
+            user.UserAvatar = editUser.AvatarName;
+            _userRepository.UpdateUser(user);
+        }
+
+        public EditUserViewModel GetUserForShowInEditMode(int userId)
+        {
+            var user = _userRepository.GetUserById(userId);
+
+            return new EditUserViewModel()
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                Password = user.Password,
+                AvatarName = user.UserAvatar,
+                UserRoles = user.UserRoles.Select(u => u.Id).ToList()
+            };
+        }
+
         public UsersForAdminViewModel GetUsers(int pageId = 1, string filterEmail = "", string filterUserName = "")
         {
             var users = _userRepository.SearchUsers(filterEmail, filterUserName);

@@ -1,4 +1,5 @@
-﻿using OnlineLearning.DataLayer.Context.EfCore;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineLearning.DataLayer.Context.EfCore;
 using OnlineLearning.DataLayer.Entities;
 using OnlineLearning.DataLayer.Repositories.Interfaces;
 using System;
@@ -69,6 +70,12 @@ namespace OnlineLearning.DataLayer.Repositories
             }
         }
 
+        public void DeleteRoles(int userId, List<int> RolesId)
+        {
+            _context.UserRoles.Where(ur => ur.UserId == userId).ToList().ForEach(r => _context.UserRoles.Remove(r));
+            _context.SaveChanges();
+        }
+
         public List<User> GetAllUsers()
         {
             return _context.Users.ToList();
@@ -96,7 +103,7 @@ namespace OnlineLearning.DataLayer.Repositories
 
         public User GetUserById(int id)
         {
-            return _context.Users.SingleOrDefault(u => u.Id == id);
+            return _context.Users.Include(u => u.UserRoles).SingleOrDefault(u => u.Id == id);
         }
 
         public User GetUserByName(string userName)

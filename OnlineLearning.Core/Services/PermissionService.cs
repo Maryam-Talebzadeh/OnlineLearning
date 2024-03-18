@@ -18,6 +18,12 @@ namespace OnlineLearning.Core.Services
             _userRepository = userRepository;
         }
 
+        public void EditRoles(int userId, List<int> RolesId)
+        {
+            _userRepository.DeleteRoles(userId, RolesId);
+            _userRepository.AddRolesToUser(RolesId, userId);
+        }
+
         public List<RoleViewModel> GetRoles()
         {
            return _userRepository.GetRoles().Select(r => new RoleViewModel

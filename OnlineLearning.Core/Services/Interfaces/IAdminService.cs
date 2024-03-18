@@ -12,5 +12,7 @@ namespace OnlineLearning.Core.Services.Interfaces
         public UsersForAdminViewModel GetUsers(int pageId = 1, string filterEmail = "", string filterUserName = "");
         public int AddUser(CreateUserViewModel user);
         public void AddRolesToUser(List<int> Roles, int userId);
+        public EditUserViewModel GetUserForShowInEditMode(int userId);
+        public void EditUser(EditUserViewModel editUser);
     }
 }
