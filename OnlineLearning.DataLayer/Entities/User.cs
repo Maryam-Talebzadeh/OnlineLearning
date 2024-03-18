@@ -22,6 +22,7 @@ namespace OnlineLearning.DataLayer.Entities
         public bool IsActive { get; set; }
         public string UserAvatar { get; set; }
         public DateTime RegisterDate { get; set; }
+        public bool IsDeleted { get; set; }
 
         #region Navigation Properties
 
