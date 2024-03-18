@@ -59,6 +59,12 @@ namespace OnlineLearning.Core.Services
 
         }
 
+        public void DeleteUser(int userId)
+        {
+            var user = _userRepository.GetUserById(userId);
+            _userRepository.DeleteUser(user);
+        }
+
         public void EditUser(EditUserViewModel editUser)
         {
             var user = _userRepository.GetUserById(editUser.Id);
@@ -91,6 +97,33 @@ namespace OnlineLearning.Core.Services
 
             user.UserAvatar = editUser.AvatarName;
             _userRepository.UpdateUser();
+        }
+
+        public UsersForAdminViewModel GetDeletedUsers(int pageId = 1, string filterEmail = "", string filterUserName = "")
+        {
+            var users = _userRepository.SearchUsersWhitEgnore(filterEmail, filterUserName).Where(u => u.IsDeleted == true);
+            int take = 1;
+            int skip = (pageId - 1) * take;
+
+            var adminUsers = new UsersForAdminViewModel()
+            {
+                Users = users.Select(user =>
+                new UserViewModel
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    Password = user.Password,
+                    IsActive = user.IsActive,
+                    RegisterDate = user.RegisterDate,
+                    UserAvatar = user.UserAvatar,
+                    Username = user.Username
+                }).Skip(skip).Take(take).ToList(),
+
+                CurrentPage = pageId,
+                PagesCount = users.Count() / take
+            };
+
+            return adminUsers;
         }
 
         public EditUserViewModel GetUserForShowInEditMode(int userId)

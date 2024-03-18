@@ -14,5 +14,7 @@ namespace OnlineLearning.Core.Services.Interfaces
         public void AddRolesToUser(List<int> Roles, int userId);
         public EditUserViewModel GetUserForShowInEditMode(int userId);
         public void EditUser(EditUserViewModel editUser);
+        public UsersForAdminViewModel GetDeletedUsers(int pageId = 1, string filterEmail = "", string filterUserName = "");
+        public void DeleteUser(int userId);
     }
 }

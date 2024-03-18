@@ -158,5 +158,22 @@ namespace OnlineLearning.DataLayer.Repositories
                 return false;
             }
         }
+
+        public List<User> SearchUsersWhitEgnore(string filterEmail = "", string filterUserName = "")
+        {
+            IQueryable<User> users = _context.Users.IgnoreQueryFilters();
+
+            if (!string.IsNullOrEmpty(filterEmail))
+            {
+                users = users.Where(u => u.Email.Contains(filterEmail));
+            }
+
+            if (!string.IsNullOrEmpty(filterUserName))
+            {
+                users = users.Where(u => u.Username.Contains(filterUserName));
+            }
+
+            return users.ToList();
+        }
     }
 }
