@@ -175,5 +175,13 @@ namespace OnlineLearning.DataLayer.Repositories
 
             return users.ToList();
         }
+
+        public int AddRole(Role role)
+        {
+            _context.Roles.Add(role);
+            _context.SaveChanges();
+
+            return role.Id;
+        }
     }
 }

@@ -31,6 +31,7 @@ namespace OnlineLearning.DataLayer.Repositories.Interfaces
         public List<Role> GetRoles();
         public void AddRolesToUser(List<int> Roles, int userId);
         public void DeleteRoles(int userId, List<int> RolesId);
+        public int AddRole(Role role);
 
         #endregion
     }
