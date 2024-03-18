@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineLearning.DataLayer.Entities.Permission;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace OnlineLearning.DataLayer.Entities
         #region Navigation Properties
 
         public virtual List<UserRole> UserRoles { get; set; }
+        public List<RolePermission> RolePermissions { get; set; }
 
         #endregion
     }
