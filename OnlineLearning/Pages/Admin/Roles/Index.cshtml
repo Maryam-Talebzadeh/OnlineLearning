@@ -37,12 +37,12 @@
                                 @foreach (var role in Model.RolesList)
                                 {
                                     <tr>
-                                        <td>@role.RoleTitle</td>
+                                        <td>@role.Title</td>
                                         <td>
-                                            <a href="/Admin/Roles/EditRole/@role.RoleId" class="btn btn-warning btn-sm">
+                                            <a href="/Admin/Roles/EditRole/@role.Id" class="btn btn-warning btn-sm">
                                                 ویرایش
                                             </a>
-                                            <a href="/Admin/Roles/DeleteRole/@role.RoleId" class="btn btn-danger btn-sm">
+                                            <a href="/Admin/Roles/DeleteRole/@role.Id" class="btn btn-danger btn-sm">
                                                 حذف
                                             </a>
                                         </td>

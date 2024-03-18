@@ -15,6 +15,8 @@ namespace OnlineLearning.Core.Services.Interfaces
         public List<RoleViewModel> GetRoles();
         public void EditRoles(int userId, List<int> RolesId);
         public int AddRole(RoleViewModel role);
+        public RoleViewModel GetRoleById(int RoleId);
+        public void UpdateRole(RoleViewModel role);
 
         #endregion
     }

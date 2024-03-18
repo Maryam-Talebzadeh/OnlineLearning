@@ -183,5 +183,15 @@ namespace OnlineLearning.DataLayer.Repositories
 
             return role.Id;
         }
+
+        public Role GetRoleById(int roleId)
+        {
+            return _context.Roles.Find(roleId);
+        }
+
+        public void UpdateRole(Role role)
+        {
+            _context.SaveChanges();
+        }
     }
 }

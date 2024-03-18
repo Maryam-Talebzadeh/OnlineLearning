@@ -37,6 +37,17 @@ namespace OnlineLearning.Core.Services
             _userRepository.AddRolesToUser(RolesId, userId);
         }
 
+        public RoleViewModel GetRoleById(int RoleId)
+        {
+            var role = _userRepository.GetRoleById(RoleId);
+
+            return new RoleViewModel()
+            {
+                Id = role.Id,
+                Title = role.Title
+            };
+        }
+
         public List<RoleViewModel> GetRoles()
         {
            return _userRepository.GetRoles().Select(r => new RoleViewModel
@@ -44,6 +55,16 @@ namespace OnlineLearning.Core.Services
                 Id = r.Id,
                 Title = r.Title
             }).ToList();
+        }
+
+        public void UpdateRole(RoleViewModel role)
+        {
+            var newRole = new Role
+            {
+                Title = role.Title
+            };
+
+            _userRepository.UpdateRole(newRole);
         }
     }
 }
