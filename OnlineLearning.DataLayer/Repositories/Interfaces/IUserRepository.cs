@@ -10,7 +10,7 @@ namespace OnlineLearning.DataLayer.Repositories.Interfaces
     public interface IUserRepository
     {
          public User AddUser(User user);
-        public bool UpdateUser(User user);
+        public bool UpdateUser();
         public bool DeleteUser(User user);
         public User GetUserById(int id);
         public List<User> GetAllUsers();

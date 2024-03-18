@@ -61,7 +61,8 @@ namespace OnlineLearning.DataLayer.Repositories
         {
             try
             {
-                _context.Users.Remove(user);
+                user.IsDeleted = true;
+                UpdateUser();
                 return true;
             }
             catch
@@ -145,7 +146,7 @@ namespace OnlineLearning.DataLayer.Repositories
             return users.ToList();
         }
 
-        public bool UpdateUser(User user)
+        public bool UpdateUser()
         {
             try
             {

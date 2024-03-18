@@ -44,7 +44,7 @@ namespace OnlineLearning.Core.Services
         {
             var user = _userRepository.GetUserByName(userName);
             user.Password = PasswordHelper.EncodePasswordMd5(newPassword);
-            _userRepository.UpdateUser(user);
+            _userRepository.UpdateUser();
             _unitOfWork.Save();
         }
 
@@ -82,7 +82,7 @@ namespace OnlineLearning.Core.Services
             user.Email = profile.Email;
             user.UserAvatar = profile.AvatarName;
 
-            _userRepository.UpdateUser(user);
+            _userRepository.UpdateUser();
             _unitOfWork.Save();
         }
 
@@ -263,7 +263,7 @@ namespace OnlineLearning.Core.Services
                 UserAvatar = user.UserAvatar
             };
 
-            _userRepository.UpdateUser(dbUser);
+            _userRepository.UpdateUser();
             _unitOfWork.Save();
             return true;
         }

@@ -90,7 +90,7 @@ namespace OnlineLearning.Core.Services
             }
 
             user.UserAvatar = editUser.AvatarName;
-            _userRepository.UpdateUser(user);
+            _userRepository.UpdateUser();
         }
 
         public EditUserViewModel GetUserForShowInEditMode(int userId)
