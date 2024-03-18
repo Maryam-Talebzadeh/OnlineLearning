@@ -189,9 +189,16 @@ namespace OnlineLearning.DataLayer.Repositories
             return _context.Roles.Find(roleId);
         }
 
-        public void UpdateRole(Role role)
+        public void UpdateRole()
         {
             _context.SaveChanges();
+        }
+
+        public void DeleteRole(int roleId)
+        {
+            var role = GetRoleById(roleId);
+            role.IsDeleted = true;
+            UpdateRole();
         }
     }
 }

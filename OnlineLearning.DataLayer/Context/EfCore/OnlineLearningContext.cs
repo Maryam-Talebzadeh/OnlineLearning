@@ -56,6 +56,8 @@ namespace OnlineLearning.DataLayer.Context.EfCore
 
                 });
 
+            modelBuilder.Entity<Role>().HasQueryFilter(r => r.IsDeleted == false);
+
             #endregion
 
             #region User

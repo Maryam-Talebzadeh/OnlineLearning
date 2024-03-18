@@ -31,6 +31,11 @@ namespace OnlineLearning.Core.Services
            return _userRepository.AddRole(newRole);
         }
 
+        public void DeleteRole(int roleId)
+        {
+            _userRepository.DeleteRole(roleId);
+        }
+
         public void EditRoles(int userId, List<int> RolesId)
         {
             _userRepository.DeleteRoles(userId, RolesId);
@@ -59,12 +64,9 @@ namespace OnlineLearning.Core.Services
 
         public void UpdateRole(RoleViewModel role)
         {
-            var newRole = new Role
-            {
-                Title = role.Title
-            };
-
-            _userRepository.UpdateRole(newRole);
+            var dbRole = _userRepository.GetRoleById(role.Id);
+            dbRole.Title = role.Title;
+            _userRepository.UpdateRole();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace OnlineLearning.Web.Pages.Admin.Roles
 
         public void OnGet(int id)
         {
-            Role = _permissionService.GetRoleById(Role.Id);
+            Role = _permissionService.GetRoleById(id);
         }
 
         public IActionResult OnPost()
